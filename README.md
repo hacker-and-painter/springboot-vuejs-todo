@@ -1,6 +1,6 @@
 # 使用 Spring Boot + vue 实现 TODO 应用
 
-> 项目地址: 
+> 项目地址: [springboot-vuejs-todo](https://github.com/hacker-and-painter/springboot-vuejs-todo)
 >
 > 原文地址:  [Spring Boot VueJS Example with TodoMVC, REST APIs, JPA, Hibernate and MySQL](https://hellokoding.com/build-a-full-stack-todomvc-web-app-and-rest-api-service-with-spring-boot-jpa-hibernate-mysql-freemarker-vuejs-and-docker/)
 >
