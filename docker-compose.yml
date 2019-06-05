@@ -1,0 +1,31 @@
+version: '3'
+services:
+  hk-mysql:
+    container_name: hk-mysql
+    # 指定要从中启动容器的映像。可以是存储库/标记或部分图像ID。
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    # 用于暴露端口。同docker run -p。示例：
+    ports:
+    - "3307:3306"
+    restart: always
+
+  todomvc-mysql-vuejs:
+    # 用来指定一个包含Dockerfile文件的路径。一般是当前目录.
+    build: .
+    # 挂载数据卷。同docker run -v。示例：
+    volumes:
+    - .:/app
+    - ~/.m2:/root/.m2
+    working_dir: /app
+    # 用于暴露端口。同docker run -p。示例：
+    ports:
+    - 8080:8080
+    # 用来覆盖缺省命令。
+    command: mvn clean spring-boot:run
+    # 例如在没启动数据库容器的时候启动了应用容器，这时候应用容器会因为找不到数据库而退出，为了避免这种情况我们需要加入一个标签，就是 depends_on，这个标签解决了容器的依赖、启动先后的问题。
+    depends_on:
+    - hk-mysql
